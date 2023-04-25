@@ -2,7 +2,7 @@
 xyz 25.0 # Directions to probe 3D (e.g xyz), 2D (e.g. XY0/X0Z/0YZ) or 1D (e.g x00/0y0/00z). Separed by a space, the target barrier (float format).
          # The axes to scan are programmed not to be case sensitive and so is everything that requires of a string.
 approx   # Where the FDB_Beta expansion is truncated. It is distinguished between dipole/Dipole, alpha/Alpha, beta/Beta.
-ET/noET potential # This specifies if the user wants to perform a reduction (red/Red/Reduction/reduction) or an oxidation (ox/Ox/Oxidation/oxidation) separed by a space with the REDUCTION potential.
+ET/noET potential # This specifies if the user wants to perform a reduction (red/Red/Reduction/reduction) or an oxidation (ox/Ox/Oxidation/oxidation) separed by a space with the REDUCTION potential (vs SHE).
 0.0 0.0 0.0 # It defines the center of the sphere and a constant electric field, if the values are different than zero. (Float format)
 100 10  # Radius of search; 100 as default. Trust radius defined as a percentage (input value) implemented to reduce the numerical error.
 100     # Density of grid. It is recommended to use a grid of not bigger than a 1000. The results over this density of grid are almost similar to larger values but larger computational time
