@@ -1,0 +1,48 @@
+>> Optimitzation paramaters (Keywords)
+xyz 25.0 # Directions to probe 3D (e.g xyz), 2D (e.g. XY0/X0Z/0YZ) or 1D (e.g x00/0y0/00z). Separed by a space, the target barrier (float format).
+         # The axes to scan are programmed not to be case sensitive and so is everything that requires of a string.
+approx   # Where the FDB_Beta expansion is truncated. It is distinguished between dipole/Dipole, alpha/Alpha, beta/Beta.
+ET/noET potential # This specifies if the user wants to perform a reduction (red/Red/Reduction/reduction) or an oxidation (ox/Ox/Oxidation/oxidation) separed by a space with the REDUCTION potential.
+0.0 0.0 0.0 # It defines the center of the sphere and a constant electric field, if the values are different than zero. (Float format)
+100 10  # Radius of search; 100 as default. Trust radius defined as a percentage (input value) implemented to reduce the numerical error.
+100     # Density of grid. It is recommended to use a grid of not bigger than a 1000. The results over this density of grid are almost similar to larger values but larger computational time
+>> FDB paramaters (Molecular properties) # The immediate line after the energy value the user can paste the very same format as Gaussian gives for the electric properties.
+                                         # The very same format as per the reactants is applied for the products.
+Reactants
+Energy
+-250.00000000000000
+Dipole Moment                              R   N=           3
+  2.52083144E-01 -1.39209282E+00  4.18542299E-01
+Polarizability                             R   N=           6
+  3.67765530E+02 -1.36836413E+01  2.83238490E+02 -6.33224106E+00 -5.57238765E+00
+  3.73068528E+02
+HyperPolarizability                        R   N=          10
+  1.90789810E+03  1.51204043E+02 -4.02238234E+01  2.46368592E+01 -8.52733939E+02
+  1.91683901E+01  9.32166880E+01  5.18312132E+02  1.33604690E+02  1.37062443E+02
+Nuclear
+1.0520352E+01  1.1879943E+01 -9.1721350E+00
+  1.1879943E+01  2.1848666E+02  2.1791131E+02
+ -9.1721350E+00  2.1791131E+02  3.6624928E+02
+Products
+Energy
+-300.0000000000
+Dipole Moment                              R   N=           3
+  2.52083144E-01 -1.39209282E+00  4.18542299E-01
+Polarizability                             R   N=           6
+  3.67765530E+02 -1.36836413E+01  2.83238490E+02 -6.33224106E+00 -5.57238765E+00
+  3.73068528E+02
+HyperPolarizability                        R   N=          10
+  1.90789810E+03  1.51204043E+02 -4.02238234E+01  2.46368592E+01 -8.52733939E+02
+  1.91683901E+01  9.32166880E+01  5.18312132E+02  1.33604690E+02  1.37062443E+02
+Nuclear
+1.0520352E+01  1.1879943E+01 -9.1721350E+00
+  1.1879943E+01  2.1848666E+02  2.1791131E+02
+ -9.1721350E+00  2.1791131E+02  3.6624928E+02
+Solvent # Similar format as before but only the Z axis is relevant.
+        # If the user were not to change the other values for zeros, the code is robust enough to take to take the Z(Z(Z)) to the other "pure" coordinates
+Energy
+-50.000000
+Dipole (only Z)
+Polarizability (only Z)
+HyperPolarizability (only Z)
+Nuclear (0-Matrix) # It is considered as zero because the effect of the electric field on the solvent molecules is only to orient with it
