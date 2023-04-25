@@ -5,7 +5,7 @@ approx   # Where the FDB_Beta expansion is truncated. It is distinguished betwee
 ET/noET potential # This specifies if the user wants to perform a reduction (red/Red/Reduction/reduction) or an oxidation (ox/Ox/Oxidation/oxidation) separed by a space with the REDUCTION potential (vs SHE).
 0.0 0.0 0.0 # It defines the center of the sphere and a constant electric field, if the values are different than zero. (Float format)
 100 10  # Radius of search; 100 as default. Trust radius defined as a percentage (input value) implemented to reduce the numerical error.
-100     # Density of grid. It is recommended not to use a grid bigger than a 1000. The results over this density of grid are almost similar to larger values but larger computational time
+100     # Density of grid. It is recommended not using a grid bigger than a 1000. The results over this density of grid are almost similar to larger values but larger computational time
 >> FDB paramaters (Molecular properties) # The immediate line after the energy value the user can paste the very same format as Gaussian gives for the electric properties.
                                          # The very same format as per the reactants is applied for the products.
 Reactants
