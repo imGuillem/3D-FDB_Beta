@@ -1,6 +1,6 @@
 ### FDB_beta code in 3 dimensions
 
-- This code is capable of finding the minimum barrier for a desired electric field
+- This code is capable of finding the minimum electric field for a desired barrier (in kcal/mol)
 - The author recommends reading first the information about the input before jumping into the main script
 <!--
 **imGuillem/ImGuillem** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
