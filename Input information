@@ -38,7 +38,7 @@ Nuclear
 1.0520352E+01  1.1879943E+01 -9.1721350E+00
   1.1879943E+01  2.1848666E+02  2.1791131E+02
  -9.1721350E+00  2.1791131E+02  3.6624928E+02
-Solvent # Similar format as before but only the Z axis is relevant.
+CombLig # Similar format as before but only the Z axis is relevant.
         # If the user were not to change the other values for zeros, the code is robust enough to take to take the Z(Z(Z)) to the other "pure" coordinates
 Energy
 -50.000000
