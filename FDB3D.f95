@@ -116,7 +116,6 @@ Subroutine readvalues()
         read(*,*) axis_scan,target_barrier
         read(*,*) approximation
         read(*,*) ET,potential
-        write(*,*) potential
 
                 ! Consideration of oxidation of reductions
                 coef=0
@@ -131,8 +130,8 @@ Subroutine readvalues()
         e_red=e_red+index(ET,"red")
                 if(e_red.gt.0) coef=1
 
-        potential=(-potential*9.6485d4)/4184.0d0-98.6991
-        potential=potential*coef/627.51d0 !now "potential" is the energy correction to be added in the FDB
+        potential=(-potential*9.6485d4)/4184.0d0-98.6991 ! Transformation of V to energy
+        potential=potential*coef/627.51d0 ! Now "potential" is the energy correction to be added in the FDB
         write(*,*) potential
         ! read(*,*) ET Keyword, potencial de reducció vs Fc o SHE (per decidir)
         read(*,*) x0,y0,z0;x0=x0*1.0d-4;y0=y0*1.0d-4;z0=z0*1.0d-4
