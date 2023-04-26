@@ -121,7 +121,7 @@ Subroutine readvalues()
                 coef=0
         e_ox=index(ET,"oxidation")
         e_ox=e_ox+index(ET,"Oxidation")
-        e_ox=e_ox+index(ET,"Ox")
+        e_ox=e_ox+index(ET,"Ox")       
         e_ox=e_ox+index(ET,"ox")
                 if(e_ox.gt.0) coef=-1
         e_red=index(ET,"reduction")
@@ -130,7 +130,7 @@ Subroutine readvalues()
         e_red=e_red+index(ET,"red")
                 if(e_red.gt.0) coef=1
 
-        potential=(-potential*9.6485d4)/4184.0d0-98.6991 ! Transformation of V to energy
+        potential=(-potential*9.6485d4)/4184.0d0-98.6991 ! Transformation of volts to energy
         potential=potential*coef/627.51d0 ! Now "potential" is the energy correction to be added in the FDB
         write(*,*) potential
         ! read(*,*) ET Keyword, potencial de reducció vs Fc o SHE (per decidir)
