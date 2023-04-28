@@ -16,8 +16,6 @@ integer i,j,k,d,approx
         COMMON /properties/ target_barrier,x0,y0,z0,R,c_i,d,potential
         COMMON /keywords/ approximation,axis_scan,ET !(Dipole/dipole or 1, Alpha/alpha or 2, Beta/Beta or 3)
 
-! S'han d'implementar les keywords ET(pot.red)
-
 call readvalues()
 
 call minimize()
@@ -110,9 +108,6 @@ Subroutine readvalues()
         COMMON /keywords/ approximation,axis_scan,ET
 ! Reading input values from the file
         read(*,*) hermenegildo
-        ! Keywords: I'd like to have both 'axis_scan' and 'approximation' at the same line
-        !           so it could be read as, for example, "I want to do an XY scan with Beta
-        !           approximation for a barrier of 30kcal/mol"
         read(*,*) axis_scan,target_barrier
         read(*,*) approximation
         read(*,*) ET,potential
@@ -130,10 +125,9 @@ Subroutine readvalues()
         e_red=e_red+index(ET,"red")
                 if(e_red.gt.0) coef=1
 
-        potential=(-potential*9.6485d4)/4184.0d0-98.6991 ! Transformation of volts to energy
+        potential=(-potential*9.6485d4)/4184.0d0-98.6991 ! Transformation of volts to kcal/mol
         potential=potential*coef/627.51d0 ! Now "potential" is the energy correction to be added in the FDB
         write(*,*) potential
-        ! read(*,*) ET Keyword, potencial de reducció vs Fc o SHE (per decidir)
         read(*,*) x0,y0,z0;x0=x0*1.0d-4;y0=y0*1.0d-4;z0=z0*1.0d-4
         read(*,*) R,c_i
         R=R*1.0d-4
