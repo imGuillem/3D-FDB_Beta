@@ -126,6 +126,7 @@ Subroutine readvalues()
                 if(e_red.gt.0) coef=1
 
         potential=(-potential*9.6485d4)/4184.0d0-98.6991 ! Transformation of volts to kcal/mol
+        ! 98.6991 --> Conversion of -4.28eV(=dGº_SHE) to kcal/mol
         potential=potential*coef/627.51d0 ! Now "potential" is the energy correction to be added in the FDB
         write(*,*) potential
         read(*,*) x0,y0,z0;x0=x0*1.0d-4;y0=y0*1.0d-4;z0=z0*1.0d-4
