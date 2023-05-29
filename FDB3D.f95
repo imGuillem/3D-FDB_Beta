@@ -44,8 +44,8 @@ Function E_fdb(F,approx)
         end do
 
         !if (mu_f(1) < 0) then
-          ! write(*,*) "WARNING. LIGAND NOT PROPERLY ORIENTED. STOP"
-          ! stop
+        !   write(*,*) "WARNING. LIGAND NOT PROPERLY ORIENTED. STOP"
+        !   stop
         !end if
 
         E_fdb=E_fdb-mu_f(1)*sqrt(F(1)**2+F(2)**2+F(3)**2) !adds solvent correction
@@ -86,37 +86,38 @@ End
 !-------------------------------------!
 Subroutine readvalues()
         implicit none
-! Intrinsic values of the system
+        ! Intrinsic values of the system
         double precision :: E_0,E_p,E_f,E_r
         double precision, dimension(3) :: mu,mu_p,mu_f,mu_r
         double precision, dimension(3,3) :: alpha,alpha_p,alpha_f,alpha_r,alpha_tmp
         double precision, dimension(3,3,3) :: beta,beta_p,beta_f,beta_r
 
         character*80 hermenegildo
-! Values declared by the user itself
+        ! Values declared by the user itself
         character*10 ET
         character*3 axis_scan
         character*6 approximation
         double precision x0,y0,z0,potential
         double precision R,c_i,target_barrier
         integer d,approx,e_ox,e_red,coef
-! Dummy variables for loops
+        ! Dummy variables for loops
         integer i,j,k
-! Declaring common variables for subroutines so they do not have to be declared
+        ! Declaring common variables for subroutines so they do not have to be declared
         COMMON /values/ E_0,mu,alpha,beta,mu_f,alpha_f,beta_f
         COMMON /properties/ target_barrier,x0,y0,z0,R,c_i,d,potential
         COMMON /keywords/ approximation,axis_scan,ET
-! Reading input values from the file
+        ! Reading input values from the file
         read(*,*) hermenegildo
         read(*,*) axis_scan,target_barrier
         read(*,*) approximation
         read(*,*) ET,potential
+        write(*,*) "Prepotential", potential
 
                 ! Consideration of oxidation of reductions
                 coef=0
         e_ox=index(ET,"oxidation")
         e_ox=e_ox+index(ET,"Oxidation")
-        e_ox=e_ox+index(ET,"Ox")       
+        e_ox=e_ox+index(ET,"Ox")
         e_ox=e_ox+index(ET,"ox")
                 if(e_ox.gt.0) coef=-1
         e_red=index(ET,"reduction")
@@ -125,10 +126,10 @@ Subroutine readvalues()
         e_red=e_red+index(ET,"red")
                 if(e_red.gt.0) coef=1
 
-        potential=(-potential*9.6485d4)/4184.0d0-98.6991 ! Transformation of volts to kcal/mol
-        ! 98.6991 --> Conversion of -4.28eV(=dGº_SHE) to kcal/mol
-        potential=potential*coef/627.51d0 ! Now "potential" is the energy correction to be added in the FDB
-        write(*,*) potential
+        potential=(-potential*9.6485d4)/4184.0d0-98.6991 ! Conversion from volts to kcal/mol
+                                                         ! 98.6991 ----> Conversion of -4.28eV to kcal/mol
+        potential=potential*coef/627.51d0 ! Now "potential" is the energy correction in A.U to be added in the FDB
+        write(*,*) "Postpotential", potential
         read(*,*) x0,y0,z0;x0=x0*1.0d-4;y0=y0*1.0d-4;z0=z0*1.0d-4
         read(*,*) R,c_i
         R=R*1.0d-4
@@ -447,19 +448,19 @@ Subroutine minimize()
                 end if
         else if(dirscan==3) then ! in order
                 y_axis=0;z_axis=0 ! X scan
-                call min_1D(approx,x_axis,y_axis,z_axis)
+                !call min_1D(approx,x_axis,y_axis,z_axis)
                 y_axis=1;x_axis=0 ! Y scan
-                call min_1D(approx,x_axis,y_axis,z_axis)
+                !call min_1D(approx,x_axis,y_axis,z_axis)
                 y_axis=0;z_axis=1 ! Z scan
-                call min_1D(approx,x_axis,y_axis,z_axis)
+                !call min_1D(approx,x_axis,y_axis,z_axis)
                 x_axis=1 ! XZ scan
-                call min_2D(approx,x_axis,y_axis,z_axis)
+                !call min_2D(approx,x_axis,y_axis,z_axis)
                 x_axis=0;y_axis=1 ! YZ scan
-                call min_2D(approx,x_axis,y_axis,z_axis)
+                !call min_2D(approx,x_axis,y_axis,z_axis)
                 x_axis=1;z_axis=0  ! XY scan
-                call min_2D(approx,x_axis,y_axis,z_axis)
+                !call min_2D(approx,x_axis,y_axis,z_axis)
                 z_axis=1 ! XYZ scan
-                call min_3D(approx,x_axis,y_axis,z_axis)
+                !call min_3D(approx,x_axis,y_axis,z_axis)
                 ! Locate the minimum field for a given barrier
                 call minfield_3D(approx,x_axis,y_axis,z_axis)
         else
@@ -795,7 +796,7 @@ Subroutine minfield_3D(approx,x_axis,y_axis,z_axis)
         compare=R*1.0d-1        !compare= minimum separation to consider two basins as different minimum regions
         R_amp=R*(1+c_i*0.01);F=0.0;E_min=9.9e9;tolerance=0.1 !(in kcal/mol)
 
-        write(*,*) "                    3 D ANALYSIS"
+        write(*,*) "                    3 D ANALYSIS MINIMUM FIELD"
         write(*,*) "========================================================================================================"
         ! Inicialization of F
         F(1)=x0+x_axis*(x0-R_amp)
@@ -849,7 +850,6 @@ Subroutine minfield_3D(approx,x_axis,y_axis,z_axis)
         write(*,*) "========================================================================================================"
         write(*,*) ! Just so it can be better screenshot
 End
-
 !----------------------------------------------------------------------!
 Function distance(F)
         implicit none
