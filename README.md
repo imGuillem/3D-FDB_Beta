@@ -6,11 +6,11 @@
 - The warnings due to the COMMONs can be ignored
 - The number of significant optimal electric fields in the output can be modified within the code changing the number of parameter "nbasins" on each possible scan mode.
 - Available keywords: (See "Input information" for more information about this)
-        · XYZ (e.g 0YZ)
-        · Barrier (kcal/mol)
-        · Approximation
-        · SHE potential  
-        · Centre of scannnig. 
-        · Scan & “trust” radius
-        · Grid
+        - XYZ (e.g 0YZ)
+        - Barrier (kcal/mol)
+        - Approximation
+        - SHE potential  
+        - Centre of scannnig. 
+        - Scan & “trust” radius
+        - Grid
 
